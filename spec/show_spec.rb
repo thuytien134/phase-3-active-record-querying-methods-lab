@@ -1,4 +1,4 @@
-require_relative 'spec_helper'
+require_relative "spec_helper"
 
 describe Show do
   before do
@@ -19,7 +19,7 @@ describe Show do
     it "has data attributes given to it from a migration file" do
       # You'll need to create a new migration to add the necessary columns to the shows table
       expect(rick_and_morty).to have_attributes(
-        name: "Rick and Morty", day: "Thursday", network: "Adult Swim", rating: 10
+        name: "Rick and Morty", day: "Thursday", network: "Adult Swim", rating: 10,
       )
     end
 
@@ -29,7 +29,7 @@ describe Show do
     end
 
     it "has a season column and attribute added from another migration file" do
-      file_path = File.join(__dir__, '../db/migrate')
+      file_path = File.join(__dir__, "../db/migrate")
       expect(Dir.entries(file_path)).to include(a_string_including("add_season_to_shows.rb"))
     end
   end
@@ -39,6 +39,8 @@ describe Show do
       expect(Show.highest_rating).to eq(10)
     end
   end
+
+  # binding.pry
 
   describe ".most_popular_show" do
     it "returns the name of the TV show with the highest rating" do
@@ -51,7 +53,7 @@ describe Show do
       expect(Show.lowest_rating).to eq(2)
     end
   end
-
+  # binding.pry
   describe ".least_popular_show" do
     it "returns the name of the TV show with the lowest rating" do
       expect(Show.least_popular_show).to eq(the_cleveland_show)
